@@ -1,0 +1,51 @@
+﻿<Window x:Class="Product_App.View.ProductView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Product_App.View"
+        mc:Ignorable="d" Height="450" Width="800"
+        ResizeMode="CanResize"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Normal"
+        WindowStyle="SingleBorderWindow"
+        Title="Product">
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="76*"/>
+            <RowDefinition Height="123"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.RowSpan="5" Grid.ColumnSpan="2">
+            <TextBlock TextWrapping="Wrap" Margin="10,10,498,395" FontSize="16" FontWeight="Bold"><Run Text="DATA PRODUCT"/><LineBreak/><Run/></TextBlock>
+        </Grid>
+
+        <DataGrid x:Name="TblData" Grid.Column="0" Grid.Row="2" Margin="10,3,8,0"
+                  HeadersVisibility="Column" EnableRowVirtualization="False"
+                  CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False"
+                  AlternatingRowBackground="AliceBlue" SelectedCellsChanged="TblData_SelectedCellsChanged"
+                  ItemsSource="{Binding Collection}" SelectedItem="{Binding Model}" SelectionChanged="TblData_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="CODE" Binding="{Binding Uid}" Width="auto"/>
+                <DataGridTextColumn Header="NAME" Binding="{Binding Name}" Width="*"/>
+                <DataGridTextColumn Header="STATUS" Binding="{Binding Status}" Width="auto"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBox x:Name="TxtUid" Text="{Binding Model.Uid, Mode=TwoWay}" TextWrapping="Wrap"  Margin="254,20,8,86" Grid.Row="3"/>
+        <TextBox x:Name="TxtName" Text="{Binding Model.Name, Mode=TwoWay}" TextWrapping="Wrap"  Margin="254,57,162,49" Grid.Row="3"/>
+        <CheckBox x:Name="IsChecked" IsChecked="{Binding IsChecked, Mode=TwoWay}" Content="Active" Margin="254,91,266,16" Grid.Row="3"/>
+        <Label Content="Code" Margin="188,15,351,80" Grid.Row="3"/>
+        <Label Content="Name" Margin="188,52,351,43" Grid.Row="3"/>
+        <Label Content="Status" Margin="188,85,351,10" Grid.Row="3"/>
+        <Button  Content="EDIT" Margin="10,10,10,124" Grid.Row="2" Grid.Column="1" Click="Button_Update"/>
+        <Button  Content="UPDATE" Margin="10,79,10,56" Grid.Row="2" Grid.Column="1" Click="Button_Edit"/>
+    </Grid>
+</Window>
